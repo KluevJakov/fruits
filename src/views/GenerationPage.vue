@@ -86,7 +86,7 @@
                     </div>
                     
 
-                    <v-carousel class="generation__carousel">
+                    <v-carousel class="generation__carousel" v-model="activeIndex" ref="carouselRef">
                         <v-carousel-item
                         v-for="item in carousel" :key="item.id"
                             :src="item.src"
@@ -100,7 +100,9 @@
                 </div>
 
                 <div class="generation__main-block-btns">
-                    <OrderButton class="generation__main-block-btn">
+                    <OrderButton 
+                    @click="generate()"
+                    class="generation__main-block-btn">
                         Сгенерировать
                     </OrderButton>
                     <OrderButton class="generation__main-block-btn">
@@ -132,22 +134,19 @@ import FormComponent from '../components/FormComponent.vue'
 import OrderButton from '../components/OrderButton.vue'
 import productImg from '../assets/pictures/product.png'
 import {useMainStore} from '@/stores/index'
+import axios from 'axios';
 
 const store = useMainStore()
 
-const fetchDataFromBackend = async () => {
-  await store.loadIngredientsFromBackend();
-};
+onMounted(async () => {
+    store.loadIngredientsFromBackend()
+})
 
-onMounted(() => {
-  fetchDataFromBackend();
-});
-
-const fruits = ref(store.allFruits)
-const candies = ref(store.allCandies)
-const berries = ref(store.allBerries)
-const nuts = ref(store.allNuts)
-const driedFruits = ref(store.allDriedFruits)
+const fruits = computed(() => store.allFruits)
+const candies = computed(() => store.allCandies)
+const berries = computed(() => store.allBerries)
+const nuts = computed(() => store.allNuts)
+const driedFruits = computed(() => store.allDriedFruits)
  
 const fruitsView = ref(true)
 const candiesView = ref(false)
@@ -156,18 +155,10 @@ const nutsView = ref(false)
 const driedFruitsView = ref(false)
 
 const carousel = ref([
-    {
+   /* { //TODO добавить заглушку если будет пусто
         id: 1,
         src: productImg
-    },
-    {
-        id: 2,
-        src: productImg
-    },
-    {
-        id: 3,
-        src: productImg
-    },
+    },*/
 ])
 
 const openFruits = () => (
@@ -230,6 +221,9 @@ const checkGenerationView = () => {
 
 const selectedItems = ref([])
 
+const carouselRef = ref(null);
+const activeIndex = ref(0); // Добавляем переменную для отслеживания текущего индекса элемента
+
 const selectedId = ref(0)
 const selectedIdRepeat = ref(0)
 
@@ -245,6 +239,23 @@ function toggleItemSelection(item) {
     console.log('selectedItems after splice',selectedItems.value)
     }
 }
+
+async function generate() {
+    try {
+        const response = await axios.post('http://localhost:8080/generate', selectedItems.value, {
+            responseType: 'arraybuffer' // Указываем, что ожидаем массив байтов в ответе
+        });
+        const blob = new Blob([response.data], { type: 'image/png' }); // Здесь предполагается, что изображение в формате PNG
+        const imageUrl = URL.createObjectURL(blob);
+        carousel.value.push({ id: carousel.value.length + 1, src: imageUrl });
+        activeIndex.value++;
+        carouselRef.value.next();
+
+    } catch (error) {
+        console.error('Ошибка при отправке запроса:', error);
+    }
+}
+
 
 </script>
 <style lang="scss">

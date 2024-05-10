@@ -308,23 +308,23 @@ export const useMainStore = defineStore('mainStore', {
       try {
         const response1 = await fetch('http://localhost:8080/ingredients/0c94587e-8654-4583-acdd-c5b51ae96f56');
         const data1 = await response1.json();
-        this.allFruits = data1.allFruits;
+        this.allFruits = data1;
 
         const response2 = await fetch('http://localhost:8080/ingredients/a55225ed-4c65-46cb-b9d7-79a5d89235ce');
         const data2 = await response2.json();
-        this.allCandies = data2.allCandies;
+        this.allCandies = data2;
 
         const response3 = await fetch('http://localhost:8080/ingredients/e88b0a37-f583-40a0-8efe-7d1422b96ec5');
         const data3 = await response3.json();
-        this.allBerries = data3.allBerries;
+        this.allBerries = data3;
 
         const response4 = await fetch('http://localhost:8080/ingredients/ae0abfe9-c7d5-4959-9240-40b3d912b76d');
         const data4 = await response4.json();
-        this.allNuts = data4.allNuts;
+        this.allNuts = data4;
 
         const response5 = await fetch('http://localhost:8080/ingredients/55ac2221-ac1c-4d62-a47d-44f412a6364c');
         const data5 = await response5.json();
-        this.allDriedFruits = data5.allDriedFruits;
+        this.allDriedFruits = data5;
       } catch (error) {
         console.error('Ошибка загрузки данных из бэкенда:', error);
       }
