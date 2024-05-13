@@ -28,7 +28,7 @@
                 <div class="admin-page__order-item" v-for="item in adminOrders" :key="item.id">
                     <div 
                         class="admin-page__order-item-img-container" 
-                        v-for="product in item.products" :key="product.id"
+                        v-for="product in item.bouquets" :key="product.id"
                         >
                         <img :src="product.img" alt="" class="admin-page__order-item-img">
                     </div>
@@ -40,11 +40,11 @@
                             </p>
 
                             <p class="admin-page__order-item-info-title">
-                                Заказчик: <br> {{ item.name }}
+                                Заказчик: <br> {{ item.customerName }}
                             </p>
 
                             <p class="admin-page__order-item-info-title">
-                                Телефон: <br> {{ item.tel }}
+                                Телефон: <br> {{ item.customerName }}
                             </p>
 
                             <p class="admin-page__order-item-info-title">
@@ -58,11 +58,11 @@
 
                         <div class="admin-page__order-item-info">
                             <p class="admin-page__order-item-info-title">
-                                Ценовой диапазон: <br> hard code
+                                Ценовой диапазон: <br> {{ item.bouquets[0].price }}
                             </p>
 
                             <p class="admin-page__order-item-info-title">
-                                Аллергены: <br> hard code
+                                Аллергены: <br> присутствуют
                             </p>
 
                             <p class="admin-page__order-item-info-title">
@@ -199,11 +199,15 @@
     </div>
 </template>
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import {useMainStore} from '@/stores/index'
 import productImg from '@/assets/pictures/product.png'
 
 const store = useMainStore()
+
+onMounted(async () => {
+    store.loadOrdersFromBackend();
+})
 
 const ordersView = ref(true)
 const addingView = ref(false)

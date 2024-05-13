@@ -1,16 +1,15 @@
 import { type TProductCard } from "./ProductCardType";
 export declare interface TClientInfo {
     id: number,
-    name: string,
-    tel: string,
+    customerName: string,
+    phoneCustomer: string,
     email: string,
-    secondTel: string,
+    phoneReceiver: string,
     delivery: string,
-    date: string,
-    time: string,
+    deliveryDate: string,
     address: string,
     comment: string,
-    payment: string,
+    paymentMethod: string,
 
-    products: TProductCard[],
+    bouquets: TProductCard[],
   }

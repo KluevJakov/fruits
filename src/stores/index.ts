@@ -329,8 +329,20 @@ export const useMainStore = defineStore('mainStore', {
         console.error('Ошибка загрузки данных из бэкенда:', error);
       }
     },
+    async loadOrdersFromBackend() {
+      try {
+        const response6 = await fetch('http://localhost:8080/orders');
+        const data6 = await response6.json();
+        this.adminOrders = data6;
+      } catch (error) {
+        console.error('Ошибка загрузки данных из бэкенда:', error);
+      }
+    },
 
     //admin
+    loadOrders() {
+      this.loadOrdersFromBackend();
+    },
     addNewItemAdmin(data: TProductCard) {
       return this.adminNewItems.push(data)
     },
@@ -358,6 +370,9 @@ export const useMainStore = defineStore('mainStore', {
     },
     removeItemFromCart(data: TProductCard) {
       return this.cartItems.splice(data, 1)
+    },
+    removeItemsFromCart() {
+      this.cartItems = [];
     },
 
     //product view

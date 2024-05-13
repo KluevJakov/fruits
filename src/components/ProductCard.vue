@@ -17,7 +17,6 @@
 </template>
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import productImg from '../assets/pictures/product.png'
 import { useRoute } from 'vue-router'
 import { type TProductCard } from '@/types/ProductCardType.ts'
 import router from '@/router'
