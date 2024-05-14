@@ -24,7 +24,7 @@ const route = useRoute();
         font-size: 20px;
         font-family: "Pacifico-regular";
         color: #411212;
-        padding: 15px 300px;
+        padding: 10px 150px;                        
         background-color: transparent;
         border: 2px solid #411212;
         border-radius: 30px;
