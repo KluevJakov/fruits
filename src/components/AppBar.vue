@@ -30,12 +30,12 @@
         v-if="isLocationMain"
         @click="store.setCartValue(true)"
       >
-        <img src="../assets/icons/cart.svg" />
+        <img  style = "width:30px" src="../assets/icons/cart.svg" />             
       </button>
 
       <router-link to="/">
         <button class="header__action header__cart" v-if="!isLocationMain">
-          <img src="../assets/icons/home-black.svg" />
+          <img style = "width:30px" src="../assets/icons/home-black.svg" />        
         </button>
       </router-link>
 
@@ -44,7 +44,7 @@
         v-if="!isLocationMain"
         @click="store.setCartValue(true)"
       >
-        <img src="../assets/icons/cart-black.svg" />
+        <img  style = "width:30px" src="../assets/icons/cart-black.svg" />     
       </button>
     </div>
   </header>
@@ -111,7 +111,7 @@ const isLocationMain = computed(() => {
   width: 100%;
   justify-content: center;
   align-items: center;
-  padding: 40px;
+  padding: 20px;                      
 
   .header__items-container {
     .header__items {
@@ -123,10 +123,10 @@ const isLocationMain = computed(() => {
         .header__item-link {
           cursor: pointer;
           display: block;
-          font-size: 32px;
+          font-size: 30px;                              
           font-family: 'YanoneKaffeesatz-bold';
           color: white;
-          padding: 10px 50px;
+          padding: 8px 50px;                          
         }
       }
       .header__item:last-child {
