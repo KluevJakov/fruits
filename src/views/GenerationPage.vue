@@ -253,7 +253,7 @@ async function addToCard(data: TProductCard) {
         width: 100vw;
         height: 100vh;
         background: url('../assets/pictures/generation-main_2.png');
-        background-position: center;
+        //background-position: center;
         background-size: cover;
 
         .generation__start-btn {
@@ -266,7 +266,8 @@ async function addToCard(data: TProductCard) {
                 line-height: 60px;
                 font-family: "Pacifico-regular";
                 color: #411212;
-                text-shadow: 0px 3px 1px #A3AA64;
+                //text-shadow: 0px 3px 1px #A3AA64;
+                text-shadow: 0px 3px 1px #c8c8c8;
                 text-align: center;
             }
         }
