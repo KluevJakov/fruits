@@ -194,7 +194,7 @@ const openDries = () => (
   min-width: 300px;
 }
 .catalog-page {
-  margin-top: 200px;
+  margin-top: 150px;                                 
   color: #411212;
   display: flex;
   flex-direction: column;

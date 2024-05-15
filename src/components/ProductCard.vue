@@ -82,7 +82,7 @@ function checkProductButton(data: TProductCard) {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 60px;
+  gap: 30px;
 
   .product-card__item {
     display: flex;
@@ -91,14 +91,15 @@ function checkProductButton(data: TProductCard) {
     justify-content: center;
     gap: 10px;
     .product-card__button {
-      font-size: 16px;
-      font-family: 'Pacifico-regular';
+      font-size: 20px;                       
+      font-family: 'YanoneKaffeesatz-regular';  
       color: #411212;
-      padding: 5px;
+      padding: 8px;                             
       background-color: transparent;
       border: 1px solid #411212;
       border-radius: 25px;
       text-transform: uppercase;
+      width: 100px;                             
     }
     .product-card__button:hover {
       transition: 0.1s all 0.1s ease;

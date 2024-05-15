@@ -143,3 +143,12 @@ const isLocationMain = computed(() => {
   }
 }
 </style>
+
+  .header__actions-container {
+    position: absolute;
+    display: flex;
+    gap: 20px;
+    right: 40px;
+  }
+}
+</style>

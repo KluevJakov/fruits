@@ -58,9 +58,11 @@
       </div>
 
       <div class="collection" id="collection">
+      <div style = "margin-top: 50px;">                     
         <h2 class="collection__title title">
           Каталог
         </h2>
+        </div>
         <div>
           <ProductCard></ProductCard>
         </div>
@@ -265,7 +267,7 @@ const catalogLinks = ref([
   }
 
   .title {
-    font-size: 64px;
+    font-size: 45px;                        
     font-family: "Pacifico-regular";
     color: #411212;
     text-shadow: 0px 1px 5px #00000070;
@@ -281,8 +283,9 @@ const catalogLinks = ref([
     height: 100vh;
     width: 100vw;
     // min-height: 1920px;
-    background-image: url('/src/assets/pictures/main.png');
+    background-image: url('/src/assets/pictures/main_2.png');      
     background-position: center;
+    background-size: cover;                                         
 
     .is-catalog-list {
       transition: all 0.3s ease 0.3s;
@@ -339,26 +342,31 @@ const catalogLinks = ref([
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 50px;
+      gap: 40px;                            
       .about__title{
         padding-top: 200px;
         margin-top: -100px;
       }
       .about__subtitle{
         max-width: 1024px;
-        font-size: 32px;
+        font-size: 22px;                               
         color: #411212;
-        line-height: 1.5em;
+        line-height: 1.3em;                          
         font-family: "YanoneKaffeesatz-regular";
         text-align: center;
 
       }
       .about__logo-container{
         position: relative;
+        
+      }
+       .about__logo-container>img{
+        width:150px;
+        
       }
 
       .order-button__container {
-        padding: 70px;
+        padding: 30px;                            
         border-top: 1px solid black;
         border-bottom: 1px solid black;
       }
@@ -372,8 +380,8 @@ const catalogLinks = ref([
       justify-content: center;
       margin-bottom: 200px;
       .collection__title{
-        padding-top: 200px;
-        margin-top: -100px;
+        //padding-top: 200px;
+        //margin-top: -100px;
       }
     }
 
