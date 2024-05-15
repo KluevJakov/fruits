@@ -81,7 +81,7 @@
                     </OrderButton>
                 </div>
             </div>
-
+ </div>
 
             <FormComponent>
                 <template v-slot:title>
@@ -97,7 +97,7 @@
             </FormComponent>
 
         </div>
-    </div>
+   
 </template>
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
@@ -252,8 +252,9 @@ async function addToCard(data: TProductCard) {
         justify-content: center;
         width: 100vw;
         height: 100vh;
-        background: url('../assets/pictures/generation-main.png');
+        background: url('../assets/pictures/generation-main_2.png');
         background-position: center;
+        background-size: cover;
 
         .generation__start-btn {
             background: linear-gradient(#dee6d1a7 0%, #f3f5efa0 31%, #dee6d1 100%);
@@ -291,6 +292,7 @@ async function addToCard(data: TProductCard) {
                 display: flex;
                 gap: 20px;
                 position: relative;
+                justify-content: space-between;
 
                 .generation__sweet-items-container {
                     display: flex;
