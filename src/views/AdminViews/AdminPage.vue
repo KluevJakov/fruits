@@ -355,8 +355,9 @@ function showFileInput() {
     .admin-page {
         .admin-page__header {
             height: 191px;
-            background: url('../../assets/pictures/main.png');
+            background: url('../../assets/pictures/main_2.png');
             background-position: center;
+            background-size: 140%;
         }
 
         .admin-page__main {
