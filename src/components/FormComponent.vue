@@ -43,9 +43,12 @@ import OrderButton from '../components/OrderButton.vue'
         .form__img-container {
             position: absolute;
             top: -60px;
-            left: -180px;
+            left: -100px;                                 
             backdrop-filter: blur(100px);
             padding: 10px;
+            .form__img{
+            width: 200px;                            
+            }
 
         }
         .form__title {
@@ -78,4 +81,5 @@ import OrderButton from '../components/OrderButton.vue'
             }
         }
     }
+    
 </style>
