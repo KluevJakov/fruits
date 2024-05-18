@@ -58,6 +58,11 @@
       </div>
 
       <div class="collection" id="collection">
+
+
+
+
+
       <div style = "margin-top: 50px;">                     
         <h2 class="collection__title title">
           Каталог
@@ -289,7 +294,7 @@ const catalogLinks = ref([
 
     .is-catalog-list {
       transition: all 0.3s ease 0.3s;
-      width: 100%;
+      width: 99%;
     }
     .catalog-container {
       position: absolute;

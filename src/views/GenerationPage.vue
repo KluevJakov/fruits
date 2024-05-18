@@ -267,7 +267,7 @@ async function addToCard(data: TProductCard) {
                 font-family: "Pacifico-regular";
                 color: #411212;
                 //text-shadow: 0px 3px 1px #A3AA64;
-                text-shadow: 0px 3px 1px #c8c8c8;
+                //text-shadow: 0px 3px 1px #c8c8c8;
                 text-align: center;
             }
         }
@@ -325,8 +325,9 @@ async function addToCard(data: TProductCard) {
                         .generation__sweet-item {
                             background-color: #CCD7BA;
                             border: 2px solid #CCD7BA;
-                            font-family: "Pacifico-regular";
+                            font-family: "YanoneKaffeesatz-regular";
                             color: #411212;
+                            font-weight: bold;
                             font-size: 24px;
                             padding: 10px;
                             border-radius: 25px;
