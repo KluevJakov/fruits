@@ -58,11 +58,6 @@
       </div>
 
       <div class="collection" id="collection">
-
-
-
-
-
       <div style = "margin-top: 50px;">                     
         <h2 class="collection__title title">
           Каталог
