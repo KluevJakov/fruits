@@ -4,16 +4,6 @@
       Букет можно собрать на любой бюджет,<br />
       добавить ингредиенты на любой вкус
     </p>
-    <!-- test admin button-->
-    <v-btn to="/adminPage"></v-btn>
-
-    <v-text-field
-      class="search-field"
-      prepend-inner-icon="mdi-magnify"
-      variant="outlined"
-      rounded="pill"
-    ></v-text-field>
-
     <div class="catalog-page__nav-container">
       <p class="catalog-page__nav-title">Раздел</p>
 
@@ -73,30 +63,6 @@
           Сухофрукты
         </li>
       </ul>
-
-      <p class="catalog-page__price-title">Цена</p>
-
-      <div class="catalog-page__price-filter">
-        <span class="catalog-page__price-filter-span">от</span>
-        <v-text-field
-          v-model="priceFrom"
-          class="catalog-page__price-filter-input"
-          variant="outlined"
-          rounded="pill"
-          hide-details
-        >
-        </v-text-field>
-        <div class="catalog-page__price-filter-line"></div>
-        <span class="catalog-page__price-filter-span">до</span>
-        <v-text-field
-          v-model="priceTo"
-          class="catalog-page__price-filter-input"
-          variant="outlined"
-          rounded="pill"
-          hide-details
-        >
-        </v-text-field>
-      </div>
     </div>
 
     <div class="catalog-page__products-container">

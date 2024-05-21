@@ -11,7 +11,7 @@
 
                 <div class="admin-page__nav-action">
                     <button class="admin-page__nav-btn admin-page__btn" @click="changeView()">
-                        <p v-if="ordersView">Добавление</p>
+                        <!--<p v-if="ordersView">Добавление</p>-->
                         <p v-if="addingView">Заказы</p>
                     </button>
                     <v-text-field
@@ -58,10 +58,6 @@
 
                         <div class="admin-page__order-item-info">
                             <p class="admin-page__order-item-info-title">
-                                Ценовой диапазон: <br> {{ item.bouquets[0].price }}
-                            </p>
-
-                            <p class="admin-page__order-item-info-title">
                                 Аллергены: <br> присутствуют
                             </p>
 
@@ -72,7 +68,7 @@
                     </div>
 
                     <div class="admin-page__order-item-composition-container">
-                        <div class="admin-page__order-item-composition">
+                        <!--<div class="admin-page__order-item-composition">
                             <span>
                                 Состав:
                             </span>
@@ -88,18 +84,19 @@
                                 </p>
                             </div>
                             
-                        </div>
+                        </div>-->
 
-                        <div class="admin-page__order-item-actions">
+                        <div class="admin-page__order-item-actions" v-if="!item.approved">
                             <button class="admin-page__btn" @click="store.removeOrderFromAdmin(item)">
                                 <p>Отказ</p>
                             </button>
-                            <button class="admin-page__btn">
-                                <p>Обработка</p>
+                            <button class="admin-page__btn" @click="store.approveOrderFromAdmin(item)">
+                                <p>Подтвердить</p>
                             </button>
-                            <button class="admin-page__btn">
-                                <p>Подтверждено</p>
-                            </button>
+                        </div>
+
+                        <div class="admin-page__order-item-actions" v-if="item.approved">
+                            <p>ЗАКАЗ ПОДТВЕРЖДЕН</p>
                         </div>
                     </div>
                 </div>
@@ -109,10 +106,6 @@
             <div class="admin-page__adding-items" v-if="addingView">
                 <div class="admin-page__adding-item">
                     <div class="admin-page__adding-item-description">
-                        <p class="admin-page__adding-item-description-title">
-                            Ценовой диапазон: 
-                            <input type="number" v-model="newItem.price">
-                        </p>
                         <p class="admin-page__adding-item-description-title">
                             Раздел: <input type="text" v-model="newItem.section">
                         </p>
@@ -155,9 +148,6 @@
                 <!-- added items block -->
                 <div class="admin-page__adding-item" v-for="item in adminNewItems" :key="item.id">
                     <div class="admin-page__adding-item-description">
-                        <p class="admin-page__adding-item-description-title">
-                            Ценовой диапазон: {{ item.price }}
-                        </p>
                         <p class="admin-page__adding-item-description-title">
                             Раздел: {{ item.section }}
                         </p>

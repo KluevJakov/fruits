@@ -4,6 +4,7 @@ export declare interface TProductCard {
   name: string,
   img: string,
   quantity: number,
+  imageUuid: string,
 
   composition: composition[],
   description: string,

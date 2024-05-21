@@ -81,27 +81,13 @@
                     </OrderButton>
                 </div>
             </div>
- </div>
-
-            <FormComponent>
-                <template v-slot:title>
-                    Оформить заказ
-                </template>
-                <template v-slot:subtitle>
-                    Сделай заказ <br>
-                    Получи неповторимую композицию
-                </template>
-                <template v-slot:button-content>
-                    Заказать
-                </template>
-            </FormComponent>
-
         </div>
-   
+
+    </div>
+
 </template>
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
-import FormComponent from '../components/FormComponent.vue'
 import OrderButton from '../components/OrderButton.vue'
 import { type TProductCard } from '@/types/ProductCardType.ts'
 import { useMainStore } from '@/stores/index'
@@ -212,9 +198,22 @@ async function generate() {
             const response = await axios.post('http://localhost:8080/generate', selectedItems.value, {
                 responseType: 'arraybuffer'
             });
+            console.log(response);
             const blob = new Blob([response.data], { type: 'image/png' });
+            console.log(response.data);
+            console.log(blob);
             const imageUrl = URL.createObjectURL(blob);
-            carousel.value.push({ id: carousel.value.length, src: imageUrl });
+            const formData = new FormData();
+            formData.append('file', blob, 'generated_image.png');
+
+            const uploadResponse = await axios.post('http://localhost:8080/uploadImage', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            const imageUuid = uploadResponse.data;
+            carousel.value.push({ id: carousel.value.length, src: imageUrl, imageUuid: imageUuid });
             imageReceived.value = false;
         } catch (error) {
             //console.error('Ошибка при отправке запроса:', error);
@@ -226,11 +225,15 @@ async function generate() {
 
 async function addToCard(data: TProductCard) {
     let rndNumber = Math.floor(Math.random() * 10000) + 1;
+    let imageUuid = carousel.value[carouselRef.value].imageUuid;
+
+
     let newProduct = {
         id: rndNumber,
         name: "Сгенерированный букет №" + rndNumber,
         img: carousel.value[carouselRef.value].src,
         quantity: 1,
+        imageUuid: imageUuid,
     } as TProductCard;
 
     store.addItemToCart(newProduct);

@@ -72,7 +72,7 @@ const headerTitles = ref([
   {
     id: 3,
     name: 'Коллекции',
-    link: '/#collection'
+    link: '/catalogPage'
   },
   {
     id: 4,

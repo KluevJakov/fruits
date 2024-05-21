@@ -45,7 +45,7 @@
           <img src="../assets/pictures/logo.png" alt="" class="about__logo">
         </div>
 
-        <div class="order-button__container">
+        <div class="order-button__container" id="delivery">
           <router-link to='/generationPage'>
             <OrderButton>
               Заказать букет
@@ -57,29 +57,8 @@
         </div>
       </div>
 
-      <div class="collection" id="collection">
       <div style = "margin-top: 50px;">                     
-        <h2 class="collection__title title">
-          Каталог
-        </h2>
-        </div>
-        <div>
-          <ProductCard></ProductCard>
-        </div>
-      </div>
-
-      <div class="form-wrapper" id="delivery">
-        <FormComponent>
-          <template v-slot:title>
-            Собрать букет
-          </template>
-          <template v-slot:subtitle>
-            Собери свой съедобный букет, и он станет настоящим произведением искусства, достойным любого праздника
-          </template>
-          <template v-slot:button-content>
-            Составить
-          </template>
-        </FormComponent>
+        
       </div>
     </div>
     

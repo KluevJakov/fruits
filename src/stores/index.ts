@@ -349,8 +349,40 @@ export const useMainStore = defineStore('mainStore', {
     addNewOrderAdmin(data: TClientInfo) {
       return this.adminOrders.push(data)
     },
-    removeOrderFromAdmin(data: TClientInfo) {
-      return this.adminOrders.splice(data, 1)
+
+    async removeOrderFromAdmin(data: TClientInfo) {
+      try {
+        const response = await fetch(`http://localhost:8080/order/${data.id}`, {
+          method: 'DELETE',
+        });
+        if (response.ok) {
+          alert('Заказ успешно удалён');
+          this.loadOrdersFromBackend();
+        } else {
+          console.error('Error deleting order:', response.statusText);
+          alert('Failed to delete order');
+        }
+      } catch (error) {
+        console.error('Error deleting order:', error);
+        alert('Failed to delete order');
+      }
+    },
+    async approveOrderFromAdmin(data: TClientInfo) {
+      try {
+        const response = await fetch(`http://localhost:8080/order/${data.id}`, {
+          method: 'PUT',
+        });
+        if (response.ok) {
+          alert('Заказ успешно подтвержден');
+          this.loadOrdersFromBackend();
+        } else {
+          console.error('Error deleting order:', response.statusText);
+          alert('Failed to delete order');
+        }
+      } catch (error) {
+        console.error('Error deleting order:', error);
+        alert('Failed to delete order');
+      }
     },
 
     //cart
@@ -361,7 +393,7 @@ export const useMainStore = defineStore('mainStore', {
       return (this.cartFormInfo = data)
     },
     addItemToCart(data: TProductCard) {
-      const exists = this.cartItems.find((c) => c?.id === data?.id && c?.name === data?.name)
+      const exists = this.cartItems.find((c) => c?.id === data?.id && c?.name === data?.name);
       if (exists) {
         exists.quantity += 1
       } else {
