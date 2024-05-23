@@ -11,7 +11,7 @@
 
                 <div class="admin-page__nav-action">
                     <button class="admin-page__nav-btn admin-page__btn" @click="changeView()">
-                        <!--<p v-if="ordersView">Добавление</p>-->
+                        <p v-if="ordersView">Добавление</p>
                         <p v-if="addingView">Заказы</p>
                     </button>
                     <v-text-field
@@ -44,7 +44,7 @@
                             </p>
 
                             <p class="admin-page__order-item-info-title">
-                                Телефон: <br> {{ item.customerName }}
+                                Телефон: <br> {{ item.phoneCustomer }}
                             </p>
 
                             <p class="admin-page__order-item-info-title">
@@ -116,9 +116,9 @@
                             №: <input type="number" v-model="newItem.id">
                         </p>
                         <div class="admin-page__adding-item-composition">
-                            <span>
+                            <!--<span>
                                 Состав:
-                            </span>
+                            </span>-->
                             <div class="admin-page__adding-item-composition-item-container">
                                 <p class="admin-page__adding-item-composition-item">
                                     <input type="text" v-model="newItem.composition">
