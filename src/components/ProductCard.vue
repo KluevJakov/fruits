@@ -4,7 +4,6 @@
       class="product-card__item"
       v-for="item in checkCatalogView()"
       :key="item.id"
-      @click="checkProductButton(item)"
     >
       <div class="product-card__img-container">
         <img class="product-card__img" :src="item.img" />
