@@ -345,11 +345,11 @@ async function addToCard(data: TProductCard) {
 
                 .generation__carousel-subtitle {
                     font-family: "YanoneKaffeesatz-regular";
-                    font-size: 20px;
+                    font-size: 30px;
                     color: #E02A2A;
                     position: absolute;
                     right: 0;
-                    bottom: -20px;
+                    bottom: -30px;
                 }
 
             }

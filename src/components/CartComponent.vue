@@ -275,7 +275,7 @@ function setCartFormInfo(data: any) {
 
             .cart__item-alert {
               font-family: 'YanoneKaffeesatz-regular';
-              font-size: 20px;
+              font-size: 30px;
               color: #e02a2a;
             }
           }
