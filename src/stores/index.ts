@@ -1,5 +1,40 @@
 import { defineStore } from 'pinia'
-import productImg from '../assets/pictures/product.png'
+import productImgB1 from '../assets/products/berrys/berry1.png'
+import productImgB2 from '../assets/products/berrys/berry2.png'
+import productImgB3 from '../assets/products/berrys/berry3.png'
+import productImgB4 from '../assets/products/berrys/berry4.png'
+import productImgB5 from '../assets/products/berrys/berry5.png'
+import productImgB6 from '../assets/products/berrys/berry6.png'
+import productImgD1 from '../assets/products/drieds/dried1.png'
+import productImgD2 from '../assets/products/drieds/dried2.png'
+import productImgD3 from '../assets/products/drieds/dried3.png'
+import productImgD4 from '../assets/products/drieds/dried4.png'
+import productImgD5 from '../assets/products/drieds/dried5.png'
+import productImgD6 from '../assets/products/drieds/dried6.png'
+import productImgF1 from '../assets/products/fruits/fruit1.png'
+import productImgF2 from '../assets/products/fruits/fruit2.png'
+import productImgF3 from '../assets/products/fruits/fruit3.png'
+import productImgF4 from '../assets/products/fruits/fruit4.png'
+import productImgF5 from '../assets/products/fruits/fruit5.png'
+import productImgF6 from '../assets/products/fruits/fruit6.png'
+import productImgN1 from '../assets/products/new/new1.png'
+import productImgN2 from '../assets/products/new/new2.png'
+import productImgN3 from '../assets/products/new/new3.png'
+import productImgN4 from '../assets/products/new/new4.png'
+import productImgN5 from '../assets/products/new/new5.png'
+import productImgN6 from '../assets/products/new/new6.png'
+import productImgNu1 from '../assets/products/nuts/nuts1.png'
+import productImgNu2 from '../assets/products/nuts/nuts2.png'
+import productImgNu3 from '../assets/products/nuts/nuts3.png'
+import productImgNu4 from '../assets/products/nuts/nuts4.png'
+import productImgNu5 from '../assets/products/nuts/nuts5.png'
+import productImgNu6 from '../assets/products/nuts/nuts6.png'
+import productImgS1 from '../assets/products/sweets/sweet1.png'
+import productImgS2 from '../assets/products/sweets/sweet2.png'
+import productImgS3 from '../assets/products/sweets/sweet3.png'
+import productImgS4 from '../assets/products/sweets/sweet4.png'
+import productImgS5 from '../assets/products/sweets/sweet5.png'
+import productImgS6 from '../assets/products/sweets/sweet6.png'
 import { type TProductCard } from '@/types/ProductCardType'
 import { type TClientInfo } from '@/types/ClientInfoType'
 
@@ -30,69 +65,69 @@ export const useMainStore = defineStore('mainStore', {
       {
         id: 1,
         name: 'Все новинки',
-        img: productImg
+        img: productImgN3
       },
       {
         id: 2,
         name: 'Фрукты',
-        img: productImg
+        img: productImgF2
       },
       {
         id: 3,
         name: 'Конфеты',
-        img: productImg
+        img: productImgS3
       },
       {
         id: 4,
         name: 'Ягоды',
-        img: productImg
+        img: productImgB3
       },
       {
         id: 5,
         name: 'Орехи',
-        img: productImg
+        img: productImgNu3
       },
       {
         id: 6,
         name: 'Сухофрукты',
-        img: productImg
+        img: productImgD4
       }
     ] as TProductCard[],
     allNew: [
       {
         id: 1,
         name: 'Все новинки 1',
-        img: productImg,
+        img: productImgN1,
         quantity: 1
       },
       {
         id: 2,
         name: 'Все новинки 2',
-        img: productImg,
+        img: productImgN2,
         quantity: 1
       },
       {
         id: 3,
         name: 'Все новинки 3',
-        img: productImg,
+        img: productImgN3,
         quantity: 1
       },
       {
         id: 4,
         name: 'Все новинки 4',
-        img: productImg,
+        img: productImgN4,
         quantity: 1
       },
       {
         id: 5,
         name: 'Все новинки 5',
-        img: productImg,
+        img: productImgN5,
         quantity: 1
       },
       {
         id: 6,
         name: 'Все новинки 6',
-        img: productImg,
+        img: productImgN6,
         quantity: 1
       }
     ] as TProductCard[],
@@ -100,37 +135,37 @@ export const useMainStore = defineStore('mainStore', {
       {
         id: 1,
         name: 'Фрукты 1',
-        img: productImg,
+        img: productImgF1,
         quantity: 1
       },
       {
         id: 2,
         name: 'Фрукты 2',
-        img: productImg,
+        img: productImgF2,
         quantity: 1
       },
       {
         id: 3,
         name: 'Фрукты 3',
-        img: productImg,
+        img: productImgF3,
         quantity: 1
       },
       {
         id: 4,
         name: 'Фрукты 4',
-        img: productImg,
+        img: productImgF4,
         quantity: 1
       },
       {
         id: 5,
         name: 'Фрукты 5',
-        img: productImg,
+        img: productImgF5,
         quantity: 1
       },
       {
         id: 6,
         name: 'Фрукты 6',
-        img: productImg,
+        img: productImgF6,
         quantity: 1
       }
     ] as TProductCard[],
@@ -138,37 +173,37 @@ export const useMainStore = defineStore('mainStore', {
       {
         id: 1,
         name: 'Конфеты 1',
-        img: productImg,
+        img: productImgS1,
         quantity: 1
       },
       {
         id: 2,
         name: 'Конфеты 2',
-        img: productImg,
+        img: productImgS2,
         quantity: 1
       },
       {
         id: 3,
         name: 'Конфеты 3',
-        img: productImg,
+        img: productImgS3,
         quantity: 1
       },
       {
         id: 4,
         name: 'Конфеты 4',
-        img: productImg,
+        img: productImgS4,
         quantity: 1
       },
       {
         id: 5,
         name: 'Конфеты 5',
-        img: productImg,
+        img: productImgS5,
         quantity: 1
       },
       {
         id: 6,
         name: 'Конфеты 6',
-        img: productImg,
+        img: productImgS6,
         quantity: 1
       }
     ] as TProductCard[],
@@ -176,37 +211,37 @@ export const useMainStore = defineStore('mainStore', {
       {
         id: 1,
         name: 'Ягоды 1',
-        img: productImg,
+        img: productImgB1,
         quantity: 1
       },
       {
         id: 2,
         name: 'Ягоды 2',
-        img: productImg,
+        img: productImgB2,
         quantity: 1
       },
       {
         id: 3,
         name: 'Ягоды 3',
-        img: productImg,
+        img: productImgB3,
         quantity: 1
       },
       {
         id: 4,
         name: 'Ягоды 4',
-        img: productImg,
+        img: productImgB4,
         quantity: 1
       },
       {
         id: 5,
         name: 'Ягоды 5',
-        img: productImg,
+        img: productImgB5,
         quantity: 1
       },
       {
         id: 6,
         name: 'Ягоды 6',
-        img: productImg,
+        img: productImgB6,
         quantity: 1
       }
     ] as TProductCard[],
@@ -214,37 +249,37 @@ export const useMainStore = defineStore('mainStore', {
       {
         id: 1,
         name: 'Орехи 1',
-        img: productImg,
+        img: productImgNu1,
         quantity: 1
       },
       {
         id: 2,
         name: 'Орехи 2',
-        img: productImg,
+        img: productImgNu2,
         quantity: 1
       },
       {
         id: 3,
         name: 'Орехи 3',
-        img: productImg,
+        img: productImgNu3,
         quantity: 1
       },
       {
         id: 4,
         name: 'Орехи 4',
-        img: productImg,
+        img: productImgNu4,
         quantity: 1
       },
       {
         id: 5,
         name: 'Орехи 5',
-        img: productImg,
+        img: productImgNu5,
         quantity: 1
       },
       {
         id: 6,
         name: 'Орехи 6',
-        img: productImg,
+        img: productImgNu6,
         quantity: 1
       }
     ] as TProductCard[],
@@ -252,37 +287,37 @@ export const useMainStore = defineStore('mainStore', {
       {
         id: 1,
         name: 'Сухофрукты 1',
-        img: productImg,
+        img: productImgD1,
         quantity: 1
       },
       {
         id: 2,
         name: 'Сухофрукты 2',
-        img: productImg,
+        img: productImgD2,
         quantity: 1
       },
       {
         id: 3,
         name: 'Сухофрукты 3',
-        img: productImg,
+        img: productImgD3,
         quantity: 1
       },
       {
         id: 4,
         name: 'Сухофрукты 4',
-        img: productImg,
+        img: productImgD4,
         quantity: 1
       },
       {
         id: 5,
         name: 'Сухофрукты 5',
-        img: productImg,
+        img: productImgD5,
         quantity: 1
       },
       {
         id: 6,
         name: 'Сухофрукты 6',
-        img: productImg,
+        img: productImgD6,
         quantity: 1
       }
     ] as TProductCard[],
