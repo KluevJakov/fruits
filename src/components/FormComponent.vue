@@ -9,13 +9,6 @@
         <p class="form__subtitle">
             <slot name="subtitle" />
         </p>
-        <div class="inputs-container">
-            <div class="inputs-second-container">
-                <v-text-field label="Имя" variant="underlined" class="input"></v-text-field>
-                <v-text-field label="Телефон" variant="underlined" class="input"></v-text-field>
-            </div>
-            <v-text-field label="Комментарий" variant="underlined" class="input"></v-text-field>
-        </div>
 
         <OrderButton>
             <slot name="button-content" />
@@ -66,19 +59,6 @@ import OrderButton from '../components/OrderButton.vue'
             line-height: 45px;
             font-family: "Pacifico-regular";
             color: #411212;
-        }
-
-        .inputs-container {
-            display: flex;
-            flex-direction: column;
-            width: 83%;
-            .inputs-second-container {
-                display: flex;
-                gap: 40px;
-            }
-            .input {
-                color: black;
-            }
         }
     }
     
