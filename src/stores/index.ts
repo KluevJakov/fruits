@@ -37,8 +37,11 @@ import productImgS5 from '../assets/products/sweets/sweet5.png'
 import productImgS6 from '../assets/products/sweets/sweet6.png'
 import { type TProductCard } from '@/types/ProductCardType'
 import { type TClientInfo } from '@/types/ClientInfoType'
+import {useToast} from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
 
 export const useMainStore = defineStore('mainStore', {
+
   state: () => ({
     // admin new item
     adminNewItems: [] as TProductCard[],
@@ -428,6 +431,9 @@ export const useMainStore = defineStore('mainStore', {
       return (this.cartFormInfo = data)
     },
     addItemToCart(data: TProductCard) {
+      const $toast = useToast();
+      let instance = $toast.success("Букет: '" + data.name + "' успешно добавлен в корзину!");
+
       const exists = this.cartItems.find((c) => c?.id === data?.id && c?.name === data?.name);
       if (exists) {
         exists.quantity += 1

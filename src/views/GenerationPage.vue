@@ -73,9 +73,14 @@
                 </div>
 
                 <div class="generation__main-block-btns">
-                    <OrderButton @click="{ generate(); }" class="generation__main-block-btn">
-                        Сгенерировать
-                    </OrderButton>
+                    <div>
+                        <OrderButton @click="{ generate(); }" class="generation__main-block-btn" style="margin-right: 15px;">
+                            Сгенерировать
+                        </OrderButton>
+                        <OrderButton @click="{ clearIngridients(); }" class="generation__main-block-btn">
+                            Очистить
+                        </OrderButton>
+                    </div>
                     <OrderButton @click="{ addToCard(item); }" class="generation__main-block-btn">
                         Заказать букет
                     </OrderButton>
@@ -198,10 +203,7 @@ async function generate() {
             const response = await axios.post('http://localhost:8080/generate', selectedItems.value, {
                 responseType: 'arraybuffer'
             });
-            console.log(response);
             const blob = new Blob([response.data], { type: 'image/png' });
-            console.log(response.data);
-            console.log(blob);
             const imageUrl = URL.createObjectURL(blob);
             const formData = new FormData();
             formData.append('file', blob, 'generated_image.png');
@@ -221,6 +223,10 @@ async function generate() {
     }
     carouselRef.value = carousel.value.length - 1;
     console.log(carouselRef.value);
+}
+
+async function clearIngridients() {
+    selectedItems.value = [];
 }
 
 async function addToCard(data: TProductCard) {
