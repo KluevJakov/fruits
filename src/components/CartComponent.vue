@@ -27,7 +27,7 @@
               <p class="cart__item-quantity">
                 {{ item?.quantity }}
               </p>
-              <v-btn icon="mdi-plus" class="rounded-btn" @click="item.quantity++"> </v-btn>
+              <v-btn icon="mdi-plus" class="rounded-btn" @click="quantityIncrement(item)"> </v-btn>
             </div>
 
             <v-btn @click="store.removeItemFromCart(item)" class="rounded-btn" icon="mdi-close">
@@ -148,7 +148,6 @@ const cartFormInfo = ref({
 })
 
 async function sendForm(data: any) {
-  //alert(JSON.stringify(data));
   const response = await axios.post('http://localhost:8080/order', JSON.stringify(data), {
     headers: {
       "Content-Type": 'application/json',
@@ -160,10 +159,14 @@ async function sendForm(data: any) {
 
 function quantityDecrement(item: any) {
   if (item.quantity > 1) {
-    item.quantity--
+    store.decrementItemsFromCart(item)
   } else {
     store.removeItemFromCart(item)
   }
+}
+
+function quantityIncrement(item: any) {
+  store.addItemToCart(item);
 }
 
 function setCartFormInfo(data: any) {

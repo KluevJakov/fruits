@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 import productImgB1 from '../assets/products/berrys/berry1.png'
 import productImgB2 from '../assets/products/berrys/berry2.png'
 import productImgB3 from '../assets/products/berrys/berry3.png'
@@ -39,6 +39,7 @@ import { type TProductCard } from '@/types/ProductCardType'
 import { type TClientInfo } from '@/types/ClientInfoType'
 import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
+import { da } from 'vuetify/locale';
 
 export const useMainStore = defineStore('mainStore', {
 
@@ -50,7 +51,7 @@ export const useMainStore = defineStore('mainStore', {
     isCartOpen: false,
 
     //cart items
-    cartItems: [] as TProductCard[],
+    cartItems: JSON.parse(localStorage.getItem('cartItems') || '[]') as TProductCard[],
 
     //client info
     cartFormInfo: {} as TClientInfo,
@@ -433,19 +434,28 @@ export const useMainStore = defineStore('mainStore', {
     addItemToCart(data: TProductCard) {
       const $toast = useToast();
       let instance = $toast.success("Букет: '" + data.name + "' успешно добавлен в корзину!");
-
       const exists = this.cartItems.find((c) => c?.id === data?.id && c?.name === data?.name);
       if (exists) {
         exists.quantity += 1
+        localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
       } else {
-        return this.cartItems.push(data)
+        let result = this.cartItems.push(data);
+        localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+        return result;
       }
     },
     removeItemFromCart(data: TProductCard) {
-      return this.cartItems.splice(data, 1)
+      let result = this.cartItems.splice(data, 1);
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+      return result;
     },
     removeItemsFromCart() {
       this.cartItems = [];
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+    },
+    decrementItemsFromCart(item: any) {
+      item.quantity--;
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
     },
 
     //product view
