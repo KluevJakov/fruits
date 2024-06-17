@@ -27,24 +27,34 @@
     <div class="header__actions-container">
       <button
         class="header__action header__cart"
+        v-if="isLocationMain">
+        <img  style="width:35px" src="../assets/icons/profile-light.png" />             
+      </button>
+
+      <button
+        class="header__action header__cart"
+        v-if="!isLocationMain">
+        <img  style="width:35px" src="../assets/icons/profile.png" />             
+      </button>
+
+      <button
+        class="header__action header__cart"
         v-if="isLocationMain"
-        @click="store.setCartValue(true)"
-      >
-        <img  style = "width:30px" src="../assets/icons/cart.svg" />             
+        @click="store.setCartValue(true)">
+        <img  style="width:30px" src="../assets/icons/cart.svg" />             
       </button>
 
       <router-link to="/">
         <button class="header__action header__cart" v-if="!isLocationMain">
-          <img style = "width:30px" src="../assets/icons/home-black.svg" />        
+          <img style="width:30px" src="../assets/icons/home-black.svg" />        
         </button>
       </router-link>
 
       <button
         class="header__action header__cart"
         v-if="!isLocationMain"
-        @click="store.setCartValue(true)"
-      >
-        <img  style = "width:30px" src="../assets/icons/cart-black.svg" />     
+        @click="store.setCartValue(true)">
+        <img style="width:30px" src="../assets/icons/cart-black.svg" />     
       </button>
     </div>
   </header>

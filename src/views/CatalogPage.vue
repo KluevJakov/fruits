@@ -71,13 +71,16 @@
   </div>
 </template>
 <script setup lang="ts">
-// import SearchIcon from '../assets/icons/search.svg'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue';
 import ProductCard from '@/components/ProductCard.vue'
 import { useMainStore } from '@/stores/index'
 import { VBtn } from 'vuetify/components'
 
 const store = useMainStore()
+
+onMounted(async () => {
+    store.loadProductsFromBackend();
+})
 
 const allNewView = ref(true)
 const fruitsView = ref(false)

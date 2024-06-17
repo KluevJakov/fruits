@@ -97,234 +97,12 @@ export const useMainStore = defineStore('mainStore', {
         img: productImgD4
       }
     ] as TProductCard[],
-    allNew: [
-      {
-        id: 1,
-        name: 'Все новинки 1',
-        img: productImgN1,
-        quantity: 1
-      },
-      {
-        id: 2,
-        name: 'Все новинки 2',
-        img: productImgN2,
-        quantity: 1
-      },
-      {
-        id: 3,
-        name: 'Все новинки 3',
-        img: productImgN3,
-        quantity: 1
-      },
-      {
-        id: 4,
-        name: 'Все новинки 4',
-        img: productImgN4,
-        quantity: 1
-      },
-      {
-        id: 5,
-        name: 'Все новинки 5',
-        img: productImgN5,
-        quantity: 1
-      },
-      {
-        id: 6,
-        name: 'Все новинки 6',
-        img: productImgN6,
-        quantity: 1
-      }
-    ] as TProductCard[],
-    fruits: [
-      {
-        id: 1,
-        name: 'Фрукты 1',
-        img: productImgF1,
-        quantity: 1
-      },
-      {
-        id: 2,
-        name: 'Фрукты 2',
-        img: productImgF2,
-        quantity: 1
-      },
-      {
-        id: 3,
-        name: 'Фрукты 3',
-        img: productImgF3,
-        quantity: 1
-      },
-      {
-        id: 4,
-        name: 'Фрукты 4',
-        img: productImgF4,
-        quantity: 1
-      },
-      {
-        id: 5,
-        name: 'Фрукты 5',
-        img: productImgF5,
-        quantity: 1
-      },
-      {
-        id: 6,
-        name: 'Фрукты 6',
-        img: productImgF6,
-        quantity: 1
-      }
-    ] as TProductCard[],
-    candies: [
-      {
-        id: 1,
-        name: 'Конфеты 1',
-        img: productImgS1,
-        quantity: 1
-      },
-      {
-        id: 2,
-        name: 'Конфеты 2',
-        img: productImgS2,
-        quantity: 1
-      },
-      {
-        id: 3,
-        name: 'Конфеты 3',
-        img: productImgS3,
-        quantity: 1
-      },
-      {
-        id: 4,
-        name: 'Конфеты 4',
-        img: productImgS4,
-        quantity: 1
-      },
-      {
-        id: 5,
-        name: 'Конфеты 5',
-        img: productImgS5,
-        quantity: 1
-      },
-      {
-        id: 6,
-        name: 'Конфеты 6',
-        img: productImgS6,
-        quantity: 1
-      }
-    ] as TProductCard[],
-    berries: [
-      {
-        id: 1,
-        name: 'Ягоды 1',
-        img: productImgB1,
-        quantity: 1
-      },
-      {
-        id: 2,
-        name: 'Ягоды 2',
-        img: productImgB2,
-        quantity: 1
-      },
-      {
-        id: 3,
-        name: 'Ягоды 3',
-        img: productImgB3,
-        quantity: 1
-      },
-      {
-        id: 4,
-        name: 'Ягоды 4',
-        img: productImgB4,
-        quantity: 1
-      },
-      {
-        id: 5,
-        name: 'Ягоды 5',
-        img: productImgB5,
-        quantity: 1
-      },
-      {
-        id: 6,
-        name: 'Ягоды 6',
-        img: productImgB6,
-        quantity: 1
-      }
-    ] as TProductCard[],
-    nuts: [
-      {
-        id: 1,
-        name: 'Орехи 1',
-        img: productImgNu1,
-        quantity: 1
-      },
-      {
-        id: 2,
-        name: 'Орехи 2',
-        img: productImgNu2,
-        quantity: 1
-      },
-      {
-        id: 3,
-        name: 'Орехи 3',
-        img: productImgNu3,
-        quantity: 1
-      },
-      {
-        id: 4,
-        name: 'Орехи 4',
-        img: productImgNu4,
-        quantity: 1
-      },
-      {
-        id: 5,
-        name: 'Орехи 5',
-        img: productImgNu5,
-        quantity: 1
-      },
-      {
-        id: 6,
-        name: 'Орехи 6',
-        img: productImgNu6,
-        quantity: 1
-      }
-    ] as TProductCard[],
-    driedFruits: [
-      {
-        id: 1,
-        name: 'Сухофрукты 1',
-        img: productImgD1,
-        quantity: 1
-      },
-      {
-        id: 2,
-        name: 'Сухофрукты 2',
-        img: productImgD2,
-        quantity: 1
-      },
-      {
-        id: 3,
-        name: 'Сухофрукты 3',
-        img: productImgD3,
-        quantity: 1
-      },
-      {
-        id: 4,
-        name: 'Сухофрукты 4',
-        img: productImgD4,
-        quantity: 1
-      },
-      {
-        id: 5,
-        name: 'Сухофрукты 5',
-        img: productImgD5,
-        quantity: 1
-      },
-      {
-        id: 6,
-        name: 'Сухофрукты 6',
-        img: productImgD6,
-        quantity: 1
-      }
-    ] as TProductCard[],
+    allNew: [] as TProductCard[],
+    fruits: [] as TProductCard[],
+    candies: [] as TProductCard[],
+    berries: [] as TProductCard[],
+    nuts: [] as TProductCard[],
+    driedFruits: [] as TProductCard[],
 
     //состав
     allFruits: [],
@@ -343,7 +121,36 @@ export const useMainStore = defineStore('mainStore', {
     // driedFruits: (state: useMainStore): Array<TProductCard> => state.driedFruits,
   },
   actions: {
-   async loadIngredientsFromBackend() {
+    async loadProductsFromBackend() {
+      try {
+        const response0 = await fetch('http://localhost:8080/bouquets/new');
+        const data0 = await response0.json();
+        this.allNew = data0;
+
+        const response1 = await fetch('http://localhost:8080/bouquets/cat/0c94587e-8654-4583-acdd-c5b51ae96f56');
+        const data1 = await response1.json();
+        this.fruits = data1;
+
+        const response2 = await fetch('http://localhost:8080/bouquets/cat/a55225ed-4c65-46cb-b9d7-79a5d89235ce');
+        const data2 = await response2.json();
+        this.candies = data2;
+
+        const response3 = await fetch('http://localhost:8080/bouquets/cat/e88b0a37-f583-40a0-8efe-7d1422b96ec5');
+        const data3 = await response3.json();
+        this.berries = data3;
+
+        const response4 = await fetch('http://localhost:8080/bouquets/cat/ae0abfe9-c7d5-4959-9240-40b3d912b76d');
+        const data4 = await response4.json();
+        this.nuts = data4;
+
+        const response5 = await fetch('http://localhost:8080/bouquets/cat/55ac2221-ac1c-4d62-a47d-44f412a6364c');
+        const data5 = await response5.json();
+        this.driedFruits = data5;
+      } catch (error) {
+        console.error('Ошибка загрузки данных из бэкенда:', error);
+      }
+    },
+    async loadIngredientsFromBackend() {
       try {
         const response1 = await fetch('http://localhost:8080/ingredients/0c94587e-8654-4583-acdd-c5b51ae96f56');
         const data1 = await response1.json();
