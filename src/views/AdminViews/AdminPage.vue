@@ -207,36 +207,6 @@ const adminNewItems = computed(() => store.adminNewItems)
 const previewImages = ref([]);
 
 const adminOrders = computed(() => store.adminOrders)
-// const adminOrders = ref ([
-//     {
-//         id: 1,
-//         img: productImg,
-//         name: 'adksn',
-//         tel: '345',
-//         email: 'fdsf@gfd.dfg',
-//         secondTel: '345',
-//         delivery: '',
-//         date: '',
-//         time: '',
-//         address: '',
-//         comment: '',
-//         payment: '',
-//     },
-//     {
-//         id: 2,
-//         img: productImg,
-//         name: 'adksn',
-//         tel: '345',
-//         email: 'fdsf@gfd.dfg',
-//         secondTel: '345',
-//         delivery: '',
-//         date: '',
-//         time: '',
-//         address: '',
-//         comment: '',
-//         payment: '',
-//     }
-// ])
 
 const newItem = ref({
     id: 0,
@@ -301,10 +271,6 @@ const onFilesSelected = async (event) => {
 
   previewImages.value.push(...Array.from(files));
   newItem.value.images.push(...imgData);
-  // selectedFiles.push(Array.from(files).filter(i => i.type.startsWith("image/")));
-  console.log(previewImages.value.length);
-  console.log(newItem);
-  console.log('previewImages ' + previewImages.value)
 };
 
 function showFileInput() {
@@ -345,7 +311,6 @@ function showFileInput() {
     .admin-page {
         .admin-page__header {
             height: 191px;
-            background: url('../../assets/pictures/main_2.png');
             background-position: center;
             background-size: 140%;
         }

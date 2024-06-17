@@ -84,7 +84,7 @@ const handleLogin = async () => {
     if (response.ok) {
       let jwt = await response.json();
       localStorage.setItem("jwt", JSON.stringify(jwt));
-      router.push("/");
+      window.location.href = "/";
     } else {
       console.log(400);
     }

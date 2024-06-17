@@ -22,6 +22,7 @@
           </a>
         </li>
         <li
+          v-if="isAuth || isAuthMain"
           @click="deauth"
           class="header__item"
           :class="{
@@ -84,13 +85,28 @@ import { useMainStore } from "@/stores/index";
 import router from "@/router";
 import CartComponent from "./CartComponent.vue";
 const store = useMainStore();
-
+const isAuth = ref(localStorage.getItem("jwt"));
 const isCartOpen = ref(store.isCartOpen);
 
-function deauth () {
+function deauth() {
   localStorage.clear();
-  router.push("/");
+  isAuth.value = false;
+  window.location.href = "/";
 }
+
+onMounted(async () => {
+  let auth = localStorage.getItem("jwt");
+  if (auth) {
+      isAuth.value = true;
+  }
+});
+
+const isAuthMain = computed(() => {
+  let auth = localStorage.getItem("jwt");
+  if (auth) {
+    return true;
+  } else return false;
+});
 
 const headerTitles = ref([
   {
@@ -122,11 +138,6 @@ const isLocationMain = computed(() => {
   } else return false;
 });
 
-/** const isLocationMain = computed(() => {
-    if(route.path == '/') {
-        return true
-    } else return false
-}); */
 </script>
 <style lang="scss">
 .border-color-brown {
