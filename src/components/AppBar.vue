@@ -21,6 +21,22 @@
             {{ item.name }}
           </a>
         </li>
+        <li
+          @click="deauth"
+          class="header__item"
+          :class="{
+            'border-color-brown': !isLocationMain,
+          }"
+        >
+          <a
+            class="header__item-link"
+            :class="{
+              'link-color-brown': !isLocationMain,
+            }"
+          >
+            Выход
+          </a>
+        </li>
       </ul>
     </div>
 
@@ -62,13 +78,19 @@
   </header>
 </template>
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useMainStore } from "@/stores/index";
+import router from "@/router";
 import CartComponent from "./CartComponent.vue";
 const store = useMainStore();
 
 const isCartOpen = ref(store.isCartOpen);
+
+function deauth () {
+  localStorage.clear();
+  router.push("/");
+}
 
 const headerTitles = ref([
   {

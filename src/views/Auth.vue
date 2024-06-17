@@ -6,12 +6,7 @@
         <form @submit.prevent="handleLogin">
           <div>
             <label for="login-login">Логин:</label>
-            <input
-              type="text"
-              id="login-login"
-              v-model="loginData.login"
-              required
-            />
+            <input type="text" id="login-login" v-model="loginData.login" required />
           </div>
           <div>
             <label for="login-password">Пароль:</label>
@@ -54,8 +49,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import router from '@/router'
+import { ref, computed, onMounted } from "vue";
+import router from "@/router";
+
+onMounted(async () => {
+  let auth = localStorage.getItem("jwt");
+  if (auth) {
+    let authJson = JSON.parse(auth);
+    if (authJson && authJson.role && authJson.role.name == "USER") {
+      router.push("/user");
+    } else if (authJson && authJson.role && authJson.role.name == "ADMIN") {
+      router.push("/admin");
+    }
+  }
+});
 
 const loginData = ref({ login: "", password: "" });
 const registerData = ref({ login: "", password: "" });
@@ -73,16 +80,14 @@ const handleLogin = async () => {
       },
       body: JSON.stringify(loginData.value),
     });
-    
-    
+
     if (response.ok) {
       let jwt = await response.json();
       localStorage.setItem("jwt", JSON.stringify(jwt));
-      router.push('/');
+      router.push("/");
     } else {
       console.log(400);
     }
-    
   } catch (error) {
     console.error("Login error:", error);
   }
