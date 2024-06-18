@@ -109,6 +109,7 @@ const handleRegister = async () => {
       body: JSON.stringify(registerData.value),
     });
     // обработка ответа от сервера
+    window.location.href = "/";
     console.log("Register response:", await response.json());
   } catch (error) {
     console.error("Register error:", error);
