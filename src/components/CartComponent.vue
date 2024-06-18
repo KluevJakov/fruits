@@ -20,6 +20,9 @@
               <p class="cart__item-name">
                 {{ item?.name }}
               </p>
+              <p class="cart__item-description">
+                {{ item?.price ? "₽"+item?.price : "Уточняйте цену после заказа" }}
+              </p>
               <p class="cart__item-alert">В букете присутствуют аллергены *</p>
             </div>
 

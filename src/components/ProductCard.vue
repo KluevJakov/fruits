@@ -7,6 +7,7 @@
     >
       <div class="product-card__img-container">
         <img class="product-card__img" :src="item.img" />
+        <p style="margin-top: 10px; text-align: center">{{ item.price ? "₽"+item.price : "" }}</p>
       </div>
       <button class="product-card__button" @click="checkProductButton(item)">
         {{ item.name }}
