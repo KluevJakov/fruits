@@ -66,25 +66,27 @@
       <div class="catalog-page__price-filter">
         <span class="catalog-page__price-filter-span">Цена:</span>
         <button
-          :class="{ 'is-selected': selectedPriceRange.value === 'any' }"
+          :class="{
+              'is-selected': selectedPriceRange == 'any',
+            }"
           @click="filterByPrice(0, 1000000, 'any')"
         >
           Любая цена
         </button>
         <button
-          :class="{ 'is-selected': selectedPriceRange.value === '1500-2000' }"
+          :class="{ 'is-selected': selectedPriceRange == '1500-2000' }"
           @click="filterByPrice(1500, 2000, '1500-2000')"
         >
           1500-2000
         </button>
         <button
-          :class="{ 'is-selected': selectedPriceRange.value === '2000-3000' }"
+          :class="{ 'is-selected': selectedPriceRange == '2000-3000' }"
           @click="filterByPrice(2000, 3000, '2000-3000')"
         >
           2000-3000
         </button>
         <button
-          :class="{ 'is-selected': selectedPriceRange.value === '3000-5000' }"
+          :class="{ 'is-selected': selectedPriceRange == '3000-5000' }"
           @click="filterByPrice(3000, 5000, '3000-5000')"
         >
           3000-5000
@@ -111,17 +113,17 @@ const store = useMainStore();
 
 onMounted(async () => {
   store.loadProductsFromBackend();
-  filterByPrice(0, 1000000);
+  filterByPrice(0, 1000000, "any");
 });
 
 const priceFrom = ref<number | null>(null);
 const priceTo = ref<number | null>(null);
-const selectedPriceRange = ref('any');
+const selectedPriceRange = ref("any");
 
 const filterByPrice = (minPrice: number, maxPrice: number, range: string) => {
   priceFrom.value = minPrice;
   priceTo.value = maxPrice;
-    selectedPriceRange.value = range;
+  selectedPriceRange.value = range;
 };
 
 const filteredProducts = computed(() => {
@@ -284,6 +286,9 @@ const openDries = () => (
         font-size: 32px;
         color: #411212;
         font-family: "YanoneKaffeesatz-regular";
+
+        .is-selected {
+        }
       }
 
       button {
