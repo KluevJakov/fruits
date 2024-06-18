@@ -1,40 +1,10 @@
 import { defineStore } from 'pinia';
-import productImgB1 from '../assets/products/berrys/berry1.png'
-import productImgB2 from '../assets/products/berrys/berry2.png'
-import productImgB3 from '../assets/products/berrys/berry3.png'
-import productImgB4 from '../assets/products/berrys/berry4.png'
-import productImgB5 from '../assets/products/berrys/berry5.png'
-import productImgB6 from '../assets/products/berrys/berry6.png'
-import productImgD1 from '../assets/products/drieds/dried1.png'
-import productImgD2 from '../assets/products/drieds/dried2.png'
-import productImgD3 from '../assets/products/drieds/dried3.png'
-import productImgD4 from '../assets/products/drieds/dried4.png'
-import productImgD5 from '../assets/products/drieds/dried5.png'
-import productImgD6 from '../assets/products/drieds/dried6.png'
-import productImgF1 from '../assets/products/fruits/fruit1.png'
-import productImgF2 from '../assets/products/fruits/fruit2.png'
-import productImgF3 from '../assets/products/fruits/fruit3.png'
-import productImgF4 from '../assets/products/fruits/fruit4.png'
-import productImgF5 from '../assets/products/fruits/fruit5.png'
-import productImgF6 from '../assets/products/fruits/fruit6.png'
-import productImgN1 from '../assets/products/new/new1.png'
-import productImgN2 from '../assets/products/new/new2.png'
-import productImgN3 from '../assets/products/new/new3.png'
-import productImgN4 from '../assets/products/new/new4.png'
-import productImgN5 from '../assets/products/new/new5.png'
-import productImgN6 from '../assets/products/new/new6.png'
-import productImgNu1 from '../assets/products/nuts/nuts1.png'
-import productImgNu2 from '../assets/products/nuts/nuts2.png'
-import productImgNu3 from '../assets/products/nuts/nuts3.png'
-import productImgNu4 from '../assets/products/nuts/nuts4.png'
-import productImgNu5 from '../assets/products/nuts/nuts5.png'
-import productImgNu6 from '../assets/products/nuts/nuts6.png'
-import productImgS1 from '../assets/products/sweets/sweet1.png'
-import productImgS2 from '../assets/products/sweets/sweet2.png'
-import productImgS3 from '../assets/products/sweets/sweet3.png'
-import productImgS4 from '../assets/products/sweets/sweet4.png'
-import productImgS5 from '../assets/products/sweets/sweet5.png'
-import productImgS6 from '../assets/products/sweets/sweet6.png'
+import cat1 from '../assets/products/cat1.png'
+import cat2 from '../assets/products/cat2.png'
+import cat3 from '../assets/products/cat3.png'
+import cat4 from '../assets/products/cat4.png'
+import cat5 from '../assets/products/cat5.png'
+import cat6 from '../assets/products/cat6.png'
 import { type TProductCard } from '@/types/ProductCardType'
 import { type TClientInfo } from '@/types/ClientInfoType'
 import {useToast} from 'vue-toast-notification';
@@ -69,32 +39,32 @@ export const useMainStore = defineStore('mainStore', {
       {
         id: 1,
         name: 'Все новинки',
-        img: productImgN3
+        img: cat1
       },
       {
         id: 2,
         name: 'Фрукты',
-        img: productImgF2
+        img: cat4
       },
       {
         id: 3,
         name: 'Конфеты',
-        img: productImgS3
+        img: cat2
       },
       {
         id: 4,
         name: 'Ягоды',
-        img: productImgB3
+        img: cat5
       },
       {
         id: 5,
         name: 'Орехи',
-        img: productImgNu3
+        img: cat3
       },
       {
         id: 6,
         name: 'Сухофрукты',
-        img: productImgD4
+        img: cat6
       }
     ] as TProductCard[],
     allNew: [] as TProductCard[],
