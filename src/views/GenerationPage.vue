@@ -74,8 +74,11 @@
 
                 <div class="generation__main-block-btns">
                     <div>
-                        <OrderButton v-if="isAuth || isAuthMain" @click="{ generate(); }" class="generation__main-block-btn" style="margin-right: 15px;">
+                        <OrderButton v-if="(isAuth || isAuthMain) && limit != 0" @click="{ generate(); }" class="generation__main-block-btn" style="margin-right: 15px;">
                             Сгенерировать
+                        </OrderButton>
+                        <OrderButton v-if="(isAuth || isAuthMain) && limit == 0" class="generation__main-block-btn" style="margin-right: 15px;" disabled>
+                            Достигнут лимит генераций
                         </OrderButton>
                         <router-link to="/auth" style="width: 100px">
                             <OrderButton v-if="!isAuth" class="generation__main-block-btn" style="margin-right: 15px;">
@@ -90,6 +93,9 @@
                         Заказать букет
                     </OrderButton>
                 </div>
+                <p v-if="isAuth || isAuthMain" class="generation__carousel-subtitle">
+                    Осталось генераций: {{ limit }}
+                </p>
             </div>
         </div>
 
@@ -107,6 +113,7 @@ import router from '@/router';
 const store = useMainStore()
 
 const isAuth = ref(localStorage.getItem("jwt"));
+const limit = ref(0);
 
 onMounted(async () => {
   let auth = localStorage.getItem("jwt");
@@ -123,8 +130,23 @@ const isAuthMain = computed(() => {
 });
 
 onMounted(async () => {
-    store.loadIngredientsFromBackend()
+    store.loadIngredientsFromBackend();
+    refreshLimit();
 })
+
+async function refreshLimit() {
+    let auth = localStorage.getItem("jwt");
+    if (auth) {
+        const headers = {
+            'Authorization': `Bearer ${JSON.parse(localStorage.getItem("jwt")).jwt}`
+        };
+        const response = await axios.get('http://localhost:8080/limit', {
+            headers: headers
+        });
+
+        limit.value = response.data;
+    }
+}
 
 const fruits = computed(() => store.allFruits)
 const candies = computed(() => store.allCandies)
@@ -248,6 +270,7 @@ async function generate() {
         }
     }
     carouselRef.value = carousel.value.length - 1;
+    refreshLimit();
     console.log(carouselRef.value);
 }
 
