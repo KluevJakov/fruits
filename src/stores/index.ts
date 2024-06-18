@@ -17,6 +17,7 @@ export const useMainStore = defineStore('mainStore', {
     // admin new item
     adminNewItems: [] as TProductCard[],
     adminOrders: [] as TClientInfo[],
+    userOrders: [] as TClientInfo[],
     //корзина булеан
     isCartOpen: false,
 
@@ -82,13 +83,7 @@ export const useMainStore = defineStore('mainStore', {
     allDriedFruits: []
   }),
   getters: {
-    // catalogItems: (state: useMainStore): Array<TProductCard> => state.catalogItems,
-    // allNew: (state: useMainStore): Array<TProductCard> => state.allNew,
-    // fruits: (state: useMainStore): Array<TProductCard> => state.fruits,
-    // candies: (state: useMainStore): Array<TProductCard> => state.candies,
-    // berries: (state: useMainStore): Array<TProductCard> => state.berries,
-    // nuts: (state: useMainStore): Array<TProductCard> => state.nuts,
-    // driedFruits: (state: useMainStore): Array<TProductCard> => state.driedFruits,
+
   },
   actions: {
     async loadProductsFromBackend() {
@@ -150,6 +145,19 @@ export const useMainStore = defineStore('mainStore', {
         const response6 = await fetch('http://localhost:8080/orders');
         const data6 = await response6.json();
         this.adminOrders = data6;
+      } catch (error) {
+        console.error('Ошибка загрузки данных из бэкенда:', error);
+      }
+    },
+    async loadMyOrdersFromBackend() {
+      try {
+        const response6 = await fetch('http://localhost:8080/orders/my', {
+          headers: {
+            'Authorization': `Bearer ${JSON.parse(localStorage.getItem("jwt")!).jwt}`
+          }
+        });
+        const data7 = await response6.json();
+        this.userOrders = data7;
       } catch (error) {
         console.error('Ошибка загрузки данных из бэкенда:', error);
       }
