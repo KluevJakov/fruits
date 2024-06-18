@@ -222,8 +222,12 @@ async function generate() {
             imageReceived.value = true;
             imageBegin.value = false;
 
+            const headers = {
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem("jwt")).jwt}`
+            };
             const response = await axios.post('http://localhost:8080/generate', selectedItems.value, {
-                responseType: 'arraybuffer'
+                responseType: 'arraybuffer',
+                headers: headers
             });
             const blob = new Blob([response.data], { type: 'image/png' });
             const imageUrl = URL.createObjectURL(blob);
