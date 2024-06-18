@@ -184,10 +184,22 @@ export const useMainStore = defineStore('mainStore', {
         console.error('Ошибка загрузки данных из бэкенда:', error);
       }
     },
+    async loadBouquetsFromBackend() {
+      try {
+        const response6 = await fetch('http://localhost:8080/bouquets/default');
+        const data6 = await response6.json();
+        this.adminNewItems = data6;
+      } catch (error) {
+        console.error('Ошибка загрузки данных из бэкенда:', error);
+      }
+    },
 
     //admin
     loadOrders() {
       this.loadOrdersFromBackend();
+    },
+    loadBouquets() {
+      this.loadBouquetsFromBackend();
     },
     addNewItemAdmin(data: TProductCard) {
       return this.adminNewItems.push(data)

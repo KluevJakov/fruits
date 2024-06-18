@@ -131,10 +131,11 @@
           <div class="admin-page__adding-item-description">
             <p class="admin-page__adding-item-description-title">
               Категория:
-              <select 
-              style="height: 50px"
-              class="admin-page__adding-item-img-container" 
-              v-model="newBouquet.category.id">
+              <select
+                style="height: 50px"
+                class="admin-page__adding-item-img-container"
+                v-model="newBouquet.category.id"
+              >
                 <option
                   v-for="category in categories"
                   :key="category.id"
@@ -143,6 +144,12 @@
                   {{ category.name }}
                 </option>
               </select>
+            </p>
+          </div>
+
+          <div class="admin-page__adding-item-description">
+            <p class="admin-page__adding-item-description-title">
+              Новый?: <input type="checkbox" v-model="newBouquet.isNew" />
             </p>
           </div>
 
@@ -201,9 +208,15 @@
             </p>
           </div>
 
+          <div class="admin-page__adding-item-description">
+            <p class="admin-page__adding-item-description-title">
+              Новый?: {{ bouquet.isNew }}
+            </p>
+          </div>
+
           <div class="admin-page__adding-item-img-container">
             <img
-              :src="bouquet.images[0]?.imgData"
+              :src="'http://localhost:8080/images/' + bouquet.imageUuid + '.png'"
               alt=""
               class="admin-page__adding-item-img"
             />
@@ -229,6 +242,7 @@ const store = useMainStore();
 
 onMounted(async () => {
   store.loadOrdersFromBackend();
+  store.loadBouquetsFromBackend();
   fetchCategories();
 });
 
@@ -240,12 +254,13 @@ const previewImages = ref([]);
 const adminOrders = computed(() => store.adminOrders);
 const newBouquet = ref({
   name: "",
+  imageUuid: "",
   description: "",
   price: "",
+  isNew: false,
   category: {
-    id: ""
+    id: "",
   },
-  images: [],
 });
 
 function changeView() {
@@ -262,12 +277,13 @@ function clearAllInputs() {
   previewImages.value = [];
   newBouquet.value = {
     name: "",
+    imageUuid: "",
     description: "",
     price: "",
+    isNew: false,
     category: {
-      name: "",
+      id: "",
     },
-    images: [],
   };
 }
 
@@ -288,20 +304,43 @@ const onFilesSelected = async (event) => {
   console.log(files);
   if (!files?.length) return;
 
-  await Promise.all(
-    Array.from(files)
-      .filter((i) => i.type.startsWith("image/"))
-      .map((f) => (f.imageUrl = URL.createObjectURL(f)))
-  );
+  // Создание Blob из выбранного файла
+  const file = files[0];
+  const blob = new Blob([file], { type: file.type });
+  const imageUrl = URL.createObjectURL(blob);
+  const formData = new FormData();
+  formData.append("file", blob, file.name);
 
-  const imgData = await Promise.all(
-    Array.from(files)
-      .filter((i) => i.type.startsWith("image/"))
-      .map((f) => toBase64(f))
-  );
+  try {
+    const uploadResponse = await axios.post(
+      "http://localhost:8080/uploadImage",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
 
-  previewImages.value.push(...Array.from(files));
-  newBouquet.value.images.push(...imgData);
+    const imageUuid = uploadResponse.data;
+    newBouquet.value.imageUuid = imageUuid;
+
+    await Promise.all(
+      Array.from(files)
+        .filter((i) => i.type.startsWith("image/"))
+        .map((f) => (f.imageUrl = URL.createObjectURL(f)))
+    );
+
+    const imgData = await Promise.all(
+      Array.from(files)
+        .filter((i) => i.type.startsWith("image/"))
+        .map((f) => toBase64(f))
+    );
+
+    previewImages.value.push(...Array.from(files));
+  } catch (error) {
+    console.error("Error uploading image:", error);
+  }
 };
 
 function showFileInput() {
@@ -318,6 +357,7 @@ async function addBouquet() {
     const response = await axios.post("http://localhost:8080/bouquets", this.newBouquet);
     this.adminNewItems.push(response.data);
     this.clearAllInputs();
+    store.loadBouquetsFromBackend();
   } catch (error) {
     console.error("Error adding bouquet:", error);
   }
@@ -326,6 +366,7 @@ async function deleteBouquet(bouquetId) {
   try {
     await axios.delete(`http://localhost:8080/bouquets/${bouquetId}`);
     this.adminNewItems = this.adminNewItems.filter((bouquet) => bouquet.id !== bouquetId);
+    store.loadBouquetsFromBackend();
   } catch (error) {
     console.error("Error deleting bouquet:", error);
   }

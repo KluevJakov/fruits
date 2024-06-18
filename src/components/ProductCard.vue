@@ -75,6 +75,10 @@ function checkProductButton(data: TProductCard) {
 }
 </script>
 <style lang="scss">
+.product-card__img {
+  max-width: 280px;
+  max-height: 280px;
+}
 .product-card {
   max-width: 1024px;
   display: flex;
