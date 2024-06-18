@@ -74,9 +74,14 @@
 
                 <div class="generation__main-block-btns">
                     <div>
-                        <OrderButton @click="{ generate(); }" class="generation__main-block-btn" style="margin-right: 15px;">
+                        <OrderButton v-if="isAuth || isAuthMain" @click="{ generate(); }" class="generation__main-block-btn" style="margin-right: 15px;">
                             Сгенерировать
                         </OrderButton>
+                        <router-link to="/auth" style="width: 100px">
+                            <OrderButton v-if="!isAuth" class="generation__main-block-btn" style="margin-right: 15px;">
+                                Авторизуйтесь для генерации
+                            </OrderButton>
+                        </router-link>
                         <OrderButton @click="{ clearIngridients(); }" class="generation__main-block-btn">
                             Очистить
                         </OrderButton>
@@ -97,8 +102,25 @@ import OrderButton from '../components/OrderButton.vue'
 import { type TProductCard } from '@/types/ProductCardType.ts'
 import { useMainStore } from '@/stores/index'
 import axios from 'axios';
+import router from '@/router';
 
 const store = useMainStore()
+
+const isAuth = ref(localStorage.getItem("jwt"));
+
+onMounted(async () => {
+  let auth = localStorage.getItem("jwt");
+  if (auth) {
+      isAuth.value = true;
+  }
+});
+
+const isAuthMain = computed(() => {
+  let auth = localStorage.getItem("jwt");
+  if (auth) {
+    return true;
+  } else return false;
+});
 
 onMounted(async () => {
     store.loadIngredientsFromBackend()
@@ -230,19 +252,20 @@ async function clearIngridients() {
 }
 
 async function addToCard(data: TProductCard) {
-    let rndNumber = Math.floor(Math.random() * 10000) + 1;
-    let imageUuid = carousel.value[carouselRef.value].imageUuid;
+    if (typeof carousel.value[carouselRef.value] !== 'undefined') {
+        let rndNumber = Math.floor(Math.random() * 10000) + 1;
+        let imageUuid = carousel.value[carouselRef.value].imageUuid;
 
+        let newProduct = {
+            id: rndNumber,
+            name: "Сгенерированный букет №" + rndNumber,
+            img: carousel.value[carouselRef.value].src,
+            quantity: 1,
+            imageUuid: imageUuid,
+        } as TProductCard;
 
-    let newProduct = {
-        id: rndNumber,
-        name: "Сгенерированный букет №" + rndNumber,
-        img: carousel.value[carouselRef.value].src,
-        quantity: 1,
-        imageUuid: imageUuid,
-    } as TProductCard;
-
-    store.addItemToCart(newProduct);
+        store.addItemToCart(newProduct);
+    }
 }
 
 </script>

@@ -17,7 +17,9 @@
               required
             />
           </div>
-          <button type="submit">Войти</button>
+          <OrderButton type="submit">
+            Войти
+          </OrderButton>
         </form>
       </div>
       <div class="auth-block">
@@ -41,7 +43,9 @@
               required
             />
           </div>
-          <button type="submit">Зарегистрироваться</button>
+          <OrderButton type="submit">
+            Зарегистрироваться
+          </OrderButton>
         </form>
       </div>
     </div>
@@ -51,6 +55,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 import router from "@/router";
+import OrderButton from '../components/OrderButton.vue';
+
 
 onMounted(async () => {
   let auth = localStorage.getItem("jwt");
