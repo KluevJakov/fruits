@@ -130,7 +130,19 @@
 
           <div class="admin-page__adding-item-description">
             <p class="admin-page__adding-item-description-title">
-              Категория: <input type="text" v-model="newBouquet.category.name" />
+              Категория:
+              <select 
+              style="height: 50px"
+              class="admin-page__adding-item-img-container" 
+              v-model="newBouquet.category.id">
+                <option
+                  v-for="category in categories"
+                  :key="category.id"
+                  :value="category.id"
+                >
+                  {{ category.name }}
+                </option>
+              </select>
             </p>
           </div>
 
@@ -153,10 +165,7 @@
           </div>
 
           <div class="admin-page__adding-item-actions">
-            <button
-              class="admin-page__btn"
-              @click="store.addNewItemAdmin(newBouquet) && clearAllInputs()"
-            >
+            <button class="admin-page__btn" @click="addBouquet() && clearAllInputs()">
               <p>Добавить</p>
             </button>
           </div>
@@ -165,7 +174,7 @@
         <!-- added items block -->
         <div
           class="admin-page__adding-item"
-          v-for="bouquet in adminNewBouquets"
+          v-for="bouquet in adminNewItems"
           :key="bouquet.id"
         >
           <div class="admin-page__adding-item-description">
@@ -201,10 +210,7 @@
           </div>
 
           <div class="admin-page__adding-item-actions">
-            <!-- <button class="admin-page__btn">
-                <p>Редактирование</p>
-            </button> -->
-            <button class="admin-page__btn" @click="store.deleteBouquetAdmin(bouquet.id)">
+            <button class="admin-page__btn" @click="deleteBouquet(bouquet.id)">
               <p>Удалить</p>
             </button>
           </div>
@@ -217,30 +223,29 @@
 import { ref, computed, onMounted } from "vue";
 import { useMainStore } from "@/stores/index";
 import productImg from "@/assets/pictures/product.png";
+import axios from "axios";
 
 const store = useMainStore();
 
 onMounted(async () => {
   store.loadOrdersFromBackend();
+  fetchCategories();
 });
 
 const ordersView = ref(true);
 const addingView = ref(false);
-
 const adminNewItems = computed(() => store.adminNewItems);
-
+const categories = ref([]);
 const previewImages = ref([]);
-
 const adminOrders = computed(() => store.adminOrders);
-
 const newBouquet = ref({
-    name: '',
-    description: '',
-    price: '',
-    category: {
-    name: ''
-    },
-    images: []
+  name: "",
+  description: "",
+  price: "",
+  category: {
+    id: ""
+  },
+  images: [],
 });
 
 function changeView() {
@@ -256,13 +261,13 @@ function changeView() {
 function clearAllInputs() {
   previewImages.value = [];
   newBouquet.value = {
-    name: '',
-    description: '',
-    price: '',
+    name: "",
+    description: "",
+    price: "",
     category: {
-    name: ''
+      name: "",
     },
-    images: []
+    images: [],
   };
 }
 
@@ -305,6 +310,32 @@ function showFileInput() {
     return true;
   } else {
     return false;
+  }
+}
+
+async function addBouquet() {
+  try {
+    const response = await axios.post("http://localhost:8080/bouquets", this.newBouquet);
+    this.adminNewItems.push(response.data);
+    this.clearAllInputs();
+  } catch (error) {
+    console.error("Error adding bouquet:", error);
+  }
+}
+async function deleteBouquet(bouquetId) {
+  try {
+    await axios.delete(`http://localhost:8080/bouquets/${bouquetId}`);
+    this.adminNewItems = this.adminNewItems.filter((bouquet) => bouquet.id !== bouquetId);
+  } catch (error) {
+    console.error("Error deleting bouquet:", error);
+  }
+}
+async function fetchCategories() {
+  try {
+    const response = await axios.get("http://localhost:8080/categories");
+    categories.value = response.data;
+  } catch (error) {
+    console.error("Error fetching categories:", error);
   }
 }
 </script>
@@ -442,6 +473,7 @@ function showFileInput() {
         gap: 20px;
         border-bottom: 1px solid #411212;
         padding: 30px 0px;
+        flex-wrap: wrap;
         .admin-page__adding-item-description {
           display: flex;
           flex-direction: column;
