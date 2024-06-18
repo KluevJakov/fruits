@@ -236,9 +236,11 @@ async function sendForm(data: any) {
   const response = await axios.post('http://localhost:8080/order', JSON.stringify(data), {
     headers: {
       "Content-Type": 'application/json',
+      'Authorization': `Bearer ${JSON.parse(localStorage.getItem("jwt")).jwt}`
     }
   });
   store.removeItemsFromCart();
+  store.setCartValue(false)
   router.push('/thanks');
 }
 

@@ -284,9 +284,8 @@ async function addToCard(data: TProductCard) {
         let imageUuid = carousel.value[carouselRef.value].imageUuid;
 
         let newProduct = {
-            id: rndNumber,
             name: "Сгенерированный букет №" + rndNumber,
-            img: carousel.value[carouselRef.value].src,
+            img: "http://localhost:8080/images/" + imageUuid + ".png", //carousel.value[carouselRef.value].src
             quantity: 1,
             imageUuid: imageUuid,
         } as TProductCard;
