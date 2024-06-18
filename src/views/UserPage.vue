@@ -3,6 +3,7 @@
     <div class="admin-page__header"></div>
 
     <div class="admin-page__main">
+      <p>Здесь появятся ваши заказы</p>
       <div class="admin-page__order-items">
         <div class="admin-page__order-item" v-for="item in userOrders" :key="item.id">
           <div
