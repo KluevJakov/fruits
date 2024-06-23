@@ -415,6 +415,9 @@ async function addToCard(data: TProductCard) {
                 justify-content: space-around;
 
                 .generation__main-block-btn {
+                    font-family: "YanoneKaffeesatz-regular";
+                    font-size: 26px;
+                    font-weight: bold;
                     padding: 10px;
                     background: linear-gradient(#FDF7F7 0%, #BCC7C3 100%);
                 }

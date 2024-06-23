@@ -165,6 +165,7 @@ const handleRegister = async () => {
 }
 
 .auth-block button {
+  font-family: "YanoneKaffeesatz-regular";
   width: 100%;
   padding: 10px;
   border: none;
@@ -172,7 +173,7 @@ const handleRegister = async () => {
   color: white;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 25px;
 }
 
 .auth-block button:hover {

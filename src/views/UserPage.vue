@@ -3,7 +3,7 @@
     <div class="admin-page__header"></div>
 
     <div class="admin-page__main">
-      <p>Здесь появятся ваши заказы</p>
+      <div class="customOrders">Здесь появятся ваши заказы</div>
       <div class="admin-page__order-items">
         <div class="admin-page__order-item" v-for="item in userOrders" :key="item.id">
           <div
@@ -86,6 +86,15 @@ onMounted(async () => {
 <style lang="scss">
 .v-main {
   background: linear-gradient(#dee6d1 0%, #f3f5ef 31%, #ffffff 52%, #dee6d1 100%);
+}
+
+.customOrders {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: xx-large;
 }
 
 .customThx {
