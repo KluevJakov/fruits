@@ -2,7 +2,7 @@
   <div class="product-card">
     <div
       class="product-card__item"
-      v-for="item in filtredProducts"
+      v-for="item in checkCatalogView()"
       :key="item.id"
     >
       <div class="product-card__img-container">
@@ -52,19 +52,7 @@ const checkCatalogView = () => {
     return catalogItems.value
   }
   if (isLocationCatalog.value) {
-    if (allNewView.value == true) {
-      return allNew.value
-    } else if (fruitsView.value == true) {
-      return fruits.value
-    } else if (candiesView.value == true) {
-      return candies.value
-    } else if (berriesView.value == true) {
-      return berries.value
-    } else if (nutsView.value == true) {
-      return nuts.value
-    } else if (driedFruitsView.value == true) {
-      return driedFruits.value
-    }
+    return filtredProducts.value;
   }
 }
 

@@ -110,7 +110,9 @@ const store = useMainStore();
 onMounted(async () => {
   store.loadProductsFromBackend();
   filterByPrice(0, 1000000, "any");
-  store.filteredProducts = filteredProducts.value
+  setTimeout(() => {
+    store.filteredProducts = filteredProducts.value;
+  }, 300);
 });
 
 const priceFrom = ref<number | null>(null);
