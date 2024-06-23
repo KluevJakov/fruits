@@ -2,7 +2,7 @@
   <div class="product-card">
     <div
       class="product-card__item"
-      v-for="item in checkCatalogView()"
+      v-for="item in filtredProducts"
       :key="item.id"
     >
       <div class="product-card__img-container">
@@ -45,13 +45,14 @@ const berriesView = computed(() => store.berriesView)
 const nutsView = computed(() => store.nutsView)
 const driedFruitsView = computed(() => store.driedFruitsView)
 
+const filtredProducts = computed(() => store.filteredProducts)
+
 const checkCatalogView = () => {
   if (!isLocationCatalog.value) {
     return catalogItems.value
   }
   if (isLocationCatalog.value) {
     if (allNewView.value == true) {
-      console.log(allNew.value)
       return allNew.value
     } else if (fruitsView.value == true) {
       return fruits.value

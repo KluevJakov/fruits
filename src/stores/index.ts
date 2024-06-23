@@ -75,6 +75,8 @@ export const useMainStore = defineStore('mainStore', {
     nuts: [] as TProductCard[],
     driedFruits: [] as TProductCard[],
 
+    filtredProducts: [] as TProductCard[],
+
     //состав
     allFruits: [],
     allCandies: [],

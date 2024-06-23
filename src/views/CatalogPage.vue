@@ -95,11 +95,7 @@
     </div>
 
     <div class="catalog-page__products-container">
-      <ProductCard
-        v-for="product in filteredProducts"
-        :key="product.id"
-        :product="product"
-      />
+      <ProductCard/>
     </div>
   </div>
 </template>
@@ -114,6 +110,7 @@ const store = useMainStore();
 onMounted(async () => {
   store.loadProductsFromBackend();
   filterByPrice(0, 1000000, "any");
+  store.filteredProducts = filteredProducts.value
 });
 
 const priceFrom = ref<number | null>(null);
@@ -124,38 +121,39 @@ const filterByPrice = (minPrice: number, maxPrice: number, range: string) => {
   priceFrom.value = minPrice;
   priceTo.value = maxPrice;
   selectedPriceRange.value = range;
+  store.filteredProducts = filteredProducts.value
 };
 
 const filteredProducts = computed(() => {
   if (priceFrom.value !== null && priceTo.value !== null) {
     if (allNewView.value) {
       return store.allNew.filter(
-        (product) => product.price >= priceFrom.value && product.price <= priceTo.value
+        (product) => Number(product.price) >= priceFrom.value && Number(product.price) <= priceTo.value
       );
     }
     if (fruitsView.value) {
       return store.fruits.filter(
-        (product) => product.price >= priceFrom.value && product.price <= priceTo.value
+        (product) => Number(product.price) >= priceFrom.value && Number(product.price) <= priceTo.value
       );
     }
     if (candiesView.value) {
       return store.candies.filter(
-        (product) => product.price >= priceFrom.value && product.price <= priceTo.value
+        (product) => Number(product.price) >= priceFrom.value && Number(product.price) <= priceTo.value
       );
     }
     if (berriesView.value) {
       return store.berries.filter(
-        (product) => product.price >= priceFrom.value && product.price <= priceTo.value
+        (product) => Number(product.price) >= priceFrom.value && Number(product.price) <= priceTo.value
       );
     }
     if (nutsView.value) {
       return store.nuts.filter(
-        (product) => product.price >= priceFrom.value && product.price <= priceTo.value
+        (product) => Number(product.price) >= priceFrom.value && Number(product.price) <= priceTo.value
       );
     }
     if (driedFruitsView.value) {
       return store.driedFruits.filter(
-        (product) => product.price >= priceFrom.value && product.price <= priceTo.value
+        (product) => Number(product.price) >= priceFrom.value && Number(product.price) <= priceTo.value
       );
     }
   }
@@ -175,7 +173,8 @@ const openAllNew = () => (
   ((candiesView.value = false), store.doCandiesView(false)),
   ((berriesView.value = false), store.doBerriesView(false)),
   ((nutsView.value = false), store.doNutsView(false)),
-  ((driedFruitsView.value = false), store.doDriedFruitsView(false))
+  ((driedFruitsView.value = false), store.doDriedFruitsView(false)),
+  (store.filteredProducts = filteredProducts.value)
 );
 
 const openFruits = () => (
@@ -184,7 +183,8 @@ const openFruits = () => (
   ((candiesView.value = false), store.doCandiesView(false)),
   ((berriesView.value = false), store.doBerriesView(false)),
   ((nutsView.value = false), store.doNutsView(false)),
-  ((driedFruitsView.value = false), store.doDriedFruitsView(false))
+  ((driedFruitsView.value = false), store.doDriedFruitsView(false)),
+  (store.filteredProducts = filteredProducts.value)
 );
 
 const openCandies = () => (
@@ -193,7 +193,8 @@ const openCandies = () => (
   ((candiesView.value = true), store.doCandiesView(true)),
   ((berriesView.value = false), store.doBerriesView(false)),
   ((nutsView.value = false), store.doNutsView(false)),
-  ((driedFruitsView.value = false), store.doDriedFruitsView(false))
+  ((driedFruitsView.value = false), store.doDriedFruitsView(false)),
+  (store.filteredProducts = filteredProducts.value)
 );
 
 const openBerries = () => (
@@ -202,7 +203,8 @@ const openBerries = () => (
   ((candiesView.value = false), store.doCandiesView(false)),
   ((berriesView.value = true), store.doBerriesView(true)),
   ((nutsView.value = false), store.doNutsView(false)),
-  ((driedFruitsView.value = false), store.doDriedFruitsView(false))
+  ((driedFruitsView.value = false), store.doDriedFruitsView(false)),
+  (store.filteredProducts = filteredProducts.value)
 );
 
 const openNuts = () => (
@@ -211,7 +213,8 @@ const openNuts = () => (
   ((candiesView.value = false), store.doCandiesView(false)),
   ((berriesView.value = false), store.doBerriesView(false)),
   ((nutsView.value = true), store.doNutsView(true)),
-  ((driedFruitsView.value = false), store.doDriedFruitsView(false))
+  ((driedFruitsView.value = false), store.doDriedFruitsView(false)),
+  (store.filteredProducts = filteredProducts.value)
 );
 
 const openDries = () => (
@@ -220,7 +223,8 @@ const openDries = () => (
   ((candiesView.value = false), store.doCandiesView(false)),
   ((berriesView.value = false), store.doBerriesView(false)),
   ((nutsView.value = false), store.doNutsView(false)),
-  ((driedFruitsView.value = true), store.doDriedFruitsView(true))
+  ((driedFruitsView.value = true), store.doDriedFruitsView(true)),
+  (store.filteredProducts = filteredProducts.value)
 );
 </script>
 <style lang="scss">
